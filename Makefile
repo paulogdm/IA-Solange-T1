@@ -1,5 +1,5 @@
-blind:
-	@python3.4 blind_search.py map1.bmp
+run:
+	./run.sh
 
 install_ubuntu:
 	sudo apt-get install python-pip
