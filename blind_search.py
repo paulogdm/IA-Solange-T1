@@ -21,6 +21,7 @@ def DFS(map, covered, idx):
 	#if is the END. Celebrate and stop the recursion
 	if(map[idx[0]][idx[1]] == utils.getEndAlias()):
 		#append the final position and return the stack so far
+		covered[idx[0]][idx[1]] = 150
 		stack.append(idx)
 		return stack
 	
@@ -36,6 +37,7 @@ def DFS(map, covered, idx):
 		#If success, append the position and return the stack so far
 		if stack:
 			stack.append(idx)
+			covered[idx[0]][idx[1]] = 150
 			return stack
 
 	#return the empty stack
@@ -59,7 +61,7 @@ Print the list of coordinates
 '''
 def printPath(list):
 	if list:
-		print("Mask = [LINE, COLUMN]")
+		print("Mask = [X, Y]")
 		print("Start!", end=" ")
 		for point in list:
 			print(point, end ="->")
@@ -87,13 +89,12 @@ def main():
 		map = utils.readBitmap(file_name)
 
 		#creating the aux matrix
-		covered = createEmptyMatrix(len(map[0]), len(map))
+		covered = utils.createEmptyMatrix(len(map[0]), len(map))
 
 		#starting DFS
 		stack = DFS(map, covered, utils.findStart(map))
 
-		#print the result
-		printPath(reversed(stack))
+		utils.writeBitmap(file_name, "out_blind_", map, stack, covered)
 
 if __name__ == "__main__":
     main()

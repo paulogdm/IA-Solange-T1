@@ -96,14 +96,14 @@ def readBitmap(file_name):
 
 	#converting bmp into int matrix
 	#check main definitions
-	for i in range(y):
+	for i in range(x):
 		#new line
 		temp = []
 
-		for j in range(x):
+		for j in range(y):
 			
 			#receiving the right pixel
-			pixel = rgb_img.getpixel((j, i))
+			pixel = rgb_img.getpixel((i, j))
 			
 			#converting pixel
 			block = pixelSwitch(pixel)
@@ -115,6 +115,48 @@ def readBitmap(file_name):
 		matrix.append(temp)
 
 	return matrix
+
+'''
+Convert covered int to pixel
+'''
+def coveredPixel(value):
+
+	if(value > 255):
+		return (0, 255, 255)
+
+	return (0, value, 255)
+
+
+'''
+Write the robot matrix to a BMP file.
+# original_file_name 	= base map file
+# name_extension 		= prefix of name
+# map 					= original int map
+# path 					= path generated
+# covered 				= paths covered
+'''
+def writeBitmap(original_file_name, name_extension, map, path, covered):
+
+	#open the image
+	img = Image.open(original_file_name)
+	#converting to RGB
+	rgb_img = img.convert('RGB')
+
+	#evaluating size
+	x = rgb_img.size[0]
+	y = rgb_img.size[1]
+
+	#check main definitions
+	for i in range(x):
+		for j in range(y):			
+			#if robot walked
+			if(covered[i][j] > 0 and map[i][j] != START and map[i][j] != END):
+				pixel = rgb_img.putpixel((i, j), coveredPixel(covered[i][j]))
+
+	#saving
+	rgb_img.save(name_extension+original_file_name)
+
+
 
 '''
 BITMAP PIXELS DEFINITIONS
@@ -138,6 +180,19 @@ def pixelSwitch(pixel):
 	
 	return block
 
+def blockSwitch(block):
+
+	if(block == END):
+		pixel = RED
+	elif(block == START):
+		pixel = GREEN
+	elif(block == BLOCK):
+		pixel = BLACK
+	elif(block == FREE):
+		pixel = WHITE
+	else: pixel = WHITE
+	
+	return pixel
 
 '''
 PRINT MAP DEFINITIONS START
@@ -198,15 +253,40 @@ def getOptions(map, idx, covered):
 	return idx_list
 
 
+
 '''
-find the start position
+find any block position
 O(n*m)
 '''
-def findStart(matrix):
+def findBlock(matrix, block):
 	lines_idx = 0
-	for lines in matrix:
-		if START in lines:
-			return [lines_idx, lines.index(START)]
-		lines_idx+=1
 
+	#iterate lines
+	for lines in matrix:
+
+		#if found, return indexes
+		if block in lines:
+			return [lines_idx, lines.index(block)]
+		lines_idx+=1 #counting line index
+
+	#404 not found return
 	return [len(matrix), len(matrix)]
+	
+
+def findStart(matrix):
+	return  findBlock(matrix, START)
+
+def findEnd(matrix):
+	return  findBlock(matrix, END)
+
+'''
+Function to create an empty matrix
+# x = size of lines
+# y = column size
+'''
+def createEmptyMatrix(x, y):
+
+	new_matrix = [[0 for i in range(x)] for j in range(y)] 
+
+	return new_matrix
+
