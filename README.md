@@ -22,7 +22,7 @@ Primeiro trabalho da disciplina SCC0230. 2o semestre de 2015
 ## Tarefas:
 - [x] Busca cega
 - [ ] Busca com heuristica
-- [ ]Relatorio
+- [ ] Relatorio
 
 ##Como adicionar mapas
 O mapa deve ter pelo menos 2 pixels RGB:
@@ -31,8 +31,8 @@ Um ponto de fim com a cor (255,0,0) FULLRED
 Paredes podem ser adicionadas como pixeis pretos
 Branco e a cor padrao para espaços livres
 
-![Exemplo de bitmap]
-(https://drive.google.com/open?id=0B6tboTE8EeZSWDFtYUtkZUZaMTQ)
+[Exemplo de bitmap]
+(https://copy.com/fGOLxeFpcvgTgqXj)
 
 ## License
 The MIT License (MIT)
