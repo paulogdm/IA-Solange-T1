@@ -4,7 +4,8 @@ Primeiro trabalho da disciplina SCC0230. 2o semestre de 2015
 
 ## Como usar
 	O Makefile deve ser utilizado para rodar os programas.
-	'$ make blind'
+	No comando make run todos os arquivos in_*bmp serao executados por ambos os programas
+	'$ make run'
 
 
 ##Requisitos
@@ -18,10 +19,11 @@ Primeiro trabalho da disciplina SCC0230. 2o semestre de 2015
 
 ## Colaboradores:
 	Paulo Guarnier De Mitri		3555888
+	Tales Prates Correia		8532151
 
 ## Tarefas:
 - [x] Busca cega
-- [ ] Busca com heuristica
+- [x] Busca com heuristica
 - [ ] Relatorio
 
 ##Como adicionar mapas
