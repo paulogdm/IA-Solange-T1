@@ -20,7 +20,10 @@ Primeiro trabalho da disciplina SCC0230. 2o semestre de 2015
 ## Colaboradores:
 	Paulo Guarnier De Mitri		3555888
 	Tales Prates Correia		8532151
-
+    Jean Amaro                  8532401
+    Raul Donaire                8532443
+    Oscar Lima Neto             8065863
+    
 ## Tarefas:
 - [x] Busca cega
 - [x] Busca com heuristica
